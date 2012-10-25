@@ -1,0 +1,13 @@
+name = Pluto
+description = Table-based multi-column theme with JavaScript enhancements.
+version = 1.0
+core = 6.x
+base theme = bluemarine
+
+stylesheets[all][]   = css/pluto.css
+stylesheets[all][]   = css/simpleeditor.css
+
+scripts[] = js/printer_tool.js
+scripts[] = js/sticky_rotate.js
+scripts[] = js/behaviors.js
+scripts[] = js/simpleeditor.js

@@ -1,0 +1,15 @@
+#sidebar-left {
+border-right: 1px solid black;
+}
+
+/* For the printer button we did in JS*/
+#printer-button {
+float: right;
+font-weight: bold;
+padding-right: 20px;
+}
+
+/* Sticky nodes */
+.sticky {
+background-color: #DDD;
+}
