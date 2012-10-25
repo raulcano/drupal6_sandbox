@@ -88,7 +88,7 @@
  *   $db_url = 'mysqli://username:password@localhost/databasename';
  *   $db_url = 'pgsql://username:password@localhost/databasename';
  */
-$db_url = 'mysqli://root:kmr00t@localhost/drupal6_sandbox';
+$db_url = 'mysqli://test:test@localhost/drupal6_sandbox';
 $db_prefix = '';
 
 /**
