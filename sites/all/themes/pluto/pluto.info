@@ -11,3 +11,4 @@ scripts[] = js/printer_tool.js
 scripts[] = js/sticky_rotate.js
 scripts[] = js/behaviors.js
 scripts[] = js/simpleeditor.js
+scripts[] = js/day.js
