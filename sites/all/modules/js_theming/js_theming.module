@@ -1,0 +1,57 @@
+<?php
+function js_theming_init() {
+  $settings = array(
+    'enableHideMessages'           => variable_get('js_theming_enable_hide_messages', 1),
+    'statusMessageDuration'        => variable_get('js_theming_status_message_duration', 10),
+    'maxMessagesInQueue'           => variable_get('js_theming_max_messages_in_queue', 10),
+    'get'                          => drupal_to_js($_GET),    //when have time, replace this with JS equivalent
+    'request'                      => drupal_to_js($_REQUEST),//when have time, replace this with JS equivalent
+    'cookie'                       => drupal_to_js($_COOKIE), //when have time, replace this with JS equivalent
+  );
+  drupal_add_js($settings, 'setting');
+  drupal_add_js(drupal_get_path('module', 'js_theming'). '/js_theming.js');
+  drupal_add_js(drupal_get_path('module', 'js_theming'). '/js_theming.itemlist.js');
+  drupal_add_js(drupal_get_path('module', 'js_theming'). '/js_theming.messages.js');
+  drupal_add_js(drupal_get_path('module', 'js_theming'). '/js_theming.table.js');
+}
+
+function js_theming_preprocess_page(&$variables) {
+  $variables['messages'] = '<div class="js_theming_messages">' . $variables['messages'] . '</div>';
+  
+}
+function js_theming_perm() {
+  return array('administer JavaScript Theming');
+}
+function js_theming_menu() {
+  $items['admin/settings/js-theming'] = array(
+    'title' => 'JavaScript Theming Settings',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('js_theming_admin_settings'),
+    'access callback' => 'user_access',
+    'access arguments' => array('administer JavaScript Theming'),
+  );
+  
+  return $items;
+}
+
+function js_theming_admin_settings() {
+  $form = array();
+  $form['messages']['js_theming_enable_hide_messages'] = array(
+    '#title'        => t('Enable hide status messages'),
+    '#type'         => 'radios',
+    '#options'      => array(1=>'Yes',0 =>'No'),
+    '#default_value'=> variable_get('js_theming_enable_hide_messages', 1),
+  );
+  $form['messages']['js_theming_status_message_duration'] = array(
+    '#title'        => t('How long to keep status messages visible (seconds)?'),
+    '#type'         => 'textfield',
+    '#default_value'=> variable_get('js_theming_status_message_duration', 10),
+  );
+  $form['messages']['js_theming_max_messages_in_queue'] = array(
+    '#title'        => t('Maximum number of messages allowed at a time'),
+    '#type'         => 'textfield',
+    '#default_value'=> variable_get('js_theming_max_messages_in_queue', 10),
+  );
+  
+  return system_settings_form($form);
+}
